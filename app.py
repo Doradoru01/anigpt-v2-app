@@ -6,524 +6,259 @@ import time
 
 # Page config
 st.set_page_config(
-    page_title="🚀 AniGPT V2 - Future AI", 
+    page_title="AniGPT V2 - Personal AI Assistant", 
     layout="wide", 
     page_icon="🤖",
     initial_sidebar_state="collapsed"
 )
 
-# Ultra-Advanced CSS with Futuristic Design
+# Clean Modern CSS
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Hide Streamlit branding */
+/* Hide Streamlit elements */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
 
 /* Global Styling */
 .main {
-    background: 
-        radial-gradient(circle at 20% 50%, #120458 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, #8B2635 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, #0F4C75 0%, transparent 50%),
-        radial-gradient(circle at 0% 0%, #2E3440 0%, transparent 50%),
-        linear-gradient(135deg, #0F0F23 0%, #1A1A2E 50%, #16213E 100%);
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    font-family: 'Rajdhani', sans-serif;
     color: #FFFFFF;
-    position: relative;
-    overflow: hidden;
 }
 
-/* Animated Background Particles */
-.main::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(100,200,255,0.4), transparent),
-        radial-gradient(1px 1px at 90px 40px, rgba(255,100,200,0.3), transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(100,255,100,0.3), transparent);
-    background-repeat: repeat;
-    background-size: 200px 100px;
-    animation: twinkle 4s linear infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-@keyframes twinkle {
-    0% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
-    50% { opacity: 0.8; }
-    100% { transform: translateY(-100px) translateX(50px); opacity: 0.3; }
-}
-
-/* Welcome Screen Styling */
+/* Welcome Screen */
 .welcome-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     text-align: center;
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 30px;
-    margin: 20px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 
-        0 25px 50px rgba(0,0,0,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.2);
-}
-
-.welcome-container::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff, #00ffff);
-    border-radius: 30px;
-    z-index: -1;
-    animation: gradient-border 3s linear infinite;
-}
-
-@keyframes gradient-border {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    margin: 40px 20px;
+    padding: 40px 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .welcome-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 4rem;
-    font-weight: 900;
-    background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7, #DDA0DD);
-    background-size: 400% 400%;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradient-text 3s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(255,255,255,0.5);
-    margin-bottom: 20px;
-}
-
-@keyframes gradient-text {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
 }
 
 .welcome-subtitle {
-    font-size: 1.5rem;
-    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+    opacity: 0.9;
     margin-bottom: 40px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
-.hologram-effect {
-    position: relative;
-    display: inline-block;
-}
-
-.hologram-effect::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255,255,255,0.1) 50%,
-        transparent 100%
-    );
-    animation: hologram-scan 2s linear infinite;
-}
-
-@keyframes hologram-scan {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Futuristic Input Styling */
-.futuristic-input {
-    background: rgba(255,255,255,0.05);
-    border: 2px solid rgba(100,200,255,0.3);
+/* Top Header */
+.top-header {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    padding: 15px 30px;
     border-radius: 15px;
-    padding: 15px 25px;
-    font-size: 18px;
-    color: #FFFFFF;
-    font-family: 'Orbitron', monospace;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 
-        0 10px 30px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-    transition: all 0.3s ease;
-    margin: 20px;
-    min-width: 300px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-.futuristic-input:focus {
-    border-color: #00FFFF;
-    box-shadow: 
-        0 0 30px rgba(0,255,255,0.5),
-        0 10px 30px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.2);
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.user-status {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
     transform: translateY(-2px);
 }
 
-/* Futuristic Button */
-.cyber-button {
-    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-    border: none;
-    border-radius: 25px;
-    padding: 15px 40px;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: 'Orbitron', monospace;
-    color: #FFFFFF;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 
-        0 10px 30px rgba(255,107,107,0.3),
-        0 0 0 1px rgba(255,255,255,0.2);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+/* Buttons */
+.stButton > button {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 10px 25px !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 15px rgba(255,107,107,0.3) !important;
 }
 
-.cyber-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: all 0.5s ease;
+.stButton > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(255,107,107,0.4) !important;
 }
 
-.cyber-button:hover::before {
-    left: 100%;
+/* Inputs */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div > div {
+    background: rgba(255,255,255,0.9) !important;
+    border: 2px solid rgba(255,255,255,0.3) !important;
+    border-radius: 8px !important;
+    color: #333 !important;
+    font-size: 16px !important;
+    padding: 12px !important;
 }
 
-.cyber-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 15px 40px rgba(255,107,107,0.5),
-        0 0 20px rgba(78,205,196,0.3);
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: #4ECDC4 !important;
+    box-shadow: 0 0 10px rgba(78,205,196,0.3) !important;
 }
 
-/* Dashboard Header */
-.dashboard-header {
-    background: rgba(255,255,255,0.03);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 30px;
-    margin: 20px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-.dashboard-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
-    animation: loading-bar 2s linear infinite;
-}
-
-@keyframes loading-bar {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-.dashboard-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    text-shadow: 0 0 20px rgba(255,255,255,0.3);
-    margin-bottom: 10px;
-}
-
-.user-welcome {
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.7);
-    font-weight: 300;
-}
-
-/* Futuristic Cards */
-.feature-card {
-    background: rgba(255,255,255,0.03);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 25px;
-    margin: 20px 0;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 
-        0 15px 35px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-}
-
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #4ECDC4, transparent);
-    animation: card-glow 3s ease-in-out infinite;
-}
-
-@keyframes card-glow {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-}
-
-.feature-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    border-color: rgba(78,205,196,0.5);
-    box-shadow: 
-        0 25px 50px rgba(0,0,0,0.3),
-        0 0 30px rgba(78,205,196,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.2);
-}
-
-/* Futuristic Tabs */
+/* Tabs */
 .stTabs [data-baseweb="tab-list"] {
-    background: rgba(255,255,255,0.03);
-    border-radius: 20px;
-    padding: 10px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 8px;
+    gap: 8px;
 }
 
 .stTabs [data-baseweb="tab"] {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 15px;
-    color: #FFFFFF;
-    font-family: 'Orbitron', monospace;
-    font-weight: 600;
-    padding: 12px 20px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.stTabs [data-baseweb="tab"]:hover {
     background: rgba(255,255,255,0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .stTabs [aria-selected="true"] {
     background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
     border-color: rgba(255,255,255,0.3);
-    box-shadow: 
-        0 10px 30px rgba(255,107,107,0.3),
-        0 0 20px rgba(78,205,196,0.2);
-    transform: translateY(-2px);
 }
 
-/* Futuristic Inputs */
-.stTextInput > div > div > input,
-.stTextArea > div > div > textarea,
-.stSelectbox > div > div > div,
-.stNumberInput > div > div > input {
-    background: rgba(255,255,255,0.05) !important;
-    border: 2px solid rgba(100,200,255,0.3) !important;
-    border-radius: 12px !important;
-    color: #FFFFFF !important;
-    font-family: 'Rajdhani', sans-serif !important;
-    font-size: 16px !important;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease !important;
-}
-
-.stTextInput > div > div > input:focus,
-.stTextArea > div > div > textarea:focus {
-    border-color: #00FFFF !important;
-    box-shadow: 0 0 20px rgba(0,255,255,0.3) !important;
-    transform: translateY(-1px);
-}
-
-/* Futuristic Buttons */
-.stButton > button {
-    background: linear-gradient(45deg, #FF6B6B, #4ECDC4) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-    border-radius: 20px !important;
-    padding: 12px 30px !important;
-    font-family: 'Orbitron', monospace !important;
-    font-weight: 600 !important;
-    font-size: 16px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 
-        0 8px 25px rgba(255,107,107,0.3),
-        0 0 0 1px rgba(255,255,255,0.1) !important;
-    position: relative;
-    overflow: hidden;
-}
-
-.stButton > button:hover {
-    transform: translateY(-3px) scale(1.05) !important;
-    box-shadow: 
-        0 15px 40px rgba(255,107,107,0.4),
-        0 0 30px rgba(78,205,196,0.3) !important;
-}
-
-/* Futuristic Metrics */
-.metric-card {
-    background: rgba(255,255,255,0.03);
+/* Sidebar */
+.sidebar-card {
+    background: rgba(255,255,255,0.1);
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 15px;
+    border-radius: 12px;
     padding: 20px;
+    margin: 15px 0;
+    border: 1px solid rgba(255,255,255,0.2);
     text-align: center;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.metric-card:hover {
-    background: rgba(255,255,255,0.08);
-    transform: scale(1.05);
-}
-
-.metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
 }
 
 /* Success/Error Messages */
 .stSuccess > div {
     background: linear-gradient(45deg, #4ECDC4, #44A08D) !important;
-    border-radius: 15px !important;
+    border-radius: 10px !important;
     border: none !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(78,205,196,0.3);
 }
 
 .stError > div {
     background: linear-gradient(45deg, #FF6B6B, #FF5252) !important;
-    border-radius: 15px !important;
+    border-radius: 10px !important;
     border: none !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(255,107,107,0.3);
 }
 
-/* Sidebar Futuristic */
-.css-1d391kg {
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(20px);
-    border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Loading Animation */
-.loading-text {
-    font-family: 'Orbitron', monospace;
-    font-size: 1.2rem;
-    color: #4ECDC4;
-    text-align: center;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
+/* Metrics */
+.metric-card {
     background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #4ECDC4, #FF6B6B);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin: 10px 0;
 }
 
 /* Chat Messages */
-.chat-message {
-    padding: 15px 20px;
+.chat-user {
+    background: rgba(255,107,107,0.2);
+    padding: 15px;
+    border-radius: 15px 15px 5px 15px;
     margin: 10px 0;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.user-message {
-    background: rgba(255,107,107,0.1);
     margin-left: 20%;
-    border-left: 3px solid #FF6B6B;
 }
 
-.ai-message {
-    background: rgba(78,205,196,0.1);
+.chat-ai {
+    background: rgba(78,205,196,0.2);
+    padding: 15px;
+    border-radius: 15px 15px 15px 5px;
+    margin: 10px 0;
     margin-right: 20%;
-    border-left: 3px solid #4ECDC4;
 }
 
-/* Progress Bar */
-.stProgress > div > div > div {
-    background: linear-gradient(90deg, #4ECDC4, #44A08D) !important;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(78,205,196,0.3);
-}
-
-/* Responsive */
+/* Mobile Responsive */
 @media (max-width: 768px) {
     .welcome-title {
         font-size: 2.5rem;
     }
     
-    .welcome-container {
-        margin: 10px;
-        border-radius: 20px;
+    .top-header {
+        padding: 15px;
+        margin: 10px 0;
+        flex-direction: column;
+        gap: 10px;
     }
     
-    .futuristic-input {
-        min-width: 250px;
+    .user-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .card {
+        padding: 20px 15px;
+        margin: 10px 0;
+    }
+    
+    .chat-user, .chat-ai {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-container {
+        margin: 20px 10px;
+        padding: 30px 15px;
+    }
+    
+    .welcome-title {
+        font-size: 2rem;
     }
 }
 
@@ -544,6 +279,8 @@ def initialize_session_states():
         st.session_state.goals = []
     if "habits" not in st.session_state:
         st.session_state.habits = []
+    if "thoughts" not in st.session_state:
+        st.session_state.thoughts = []
 
 initialize_session_states()
 
@@ -551,33 +288,41 @@ initialize_session_states()
 def ai_chat_hinglish(user_input):
     user_input_lower = user_input.lower()
     
-    if any(word in user_input_lower for word in ['sad', 'upset', 'dukhi', 'pareshaan']):
+    if any(word in user_input_lower for word in ['sad', 'upset', 'dukhi', 'pareshaan', 'tension']):
         responses = [
             "🤗 Arre yaar, tension mat lo! Sab theek ho jayega. Kya specific problem hai?",
-            "💪 Bhai, life me ups-downs aate rehte hain. Analytics dekho, kitna progress kiya hai!",
-            "🌟 Mood down hai? Koi habit complete karo, instantly better feel karoge!",
-            "💝 Dost, journal me feelings likh do. Sharing se halka ho jayega!"
+            "💪 Bhai, life me ups-downs aate rehte hain. Focus rakho positive things par!",
+            "🌟 Mood down hai? Koi small achievement celebrate karo, better feel karoge!",
+            "💝 Dost, sharing se halka lagta hai. Main yahan hun sunne ke liye!"
         ]
-    elif any(word in user_input_lower for word in ['happy', 'khush', 'accha', 'mast']):
+    elif any(word in user_input_lower for word in ['happy', 'khush', 'accha', 'mast', 'good']):
         responses = [
-            "🎉 Waah bhai! Khushi ki baat hai. Is positive energy me naya goal set karo!",
-            "🚀 Mast hai yaar! Good mood me productivity double hoti hai!",
+            "🎉 Waah bhai! Khushi ki baat hai. Is positive energy ko productive kaam me lagao!",
+            "🚀 Mast hai yaar! Good mood me goals set karne ka perfect time hai!",
             "⭐ Bahut badhiya! Is happiness ko journal me capture kar lo!",
             "🔥 Superb! Happy mood me habits complete karna easy hota hai!"
         ]
-    elif any(word in user_input_lower for word in ['goal', 'target', 'achieve']):
+    elif any(word in user_input_lower for word in ['goal', 'target', 'achieve', 'complete']):
         responses = [
-            "🎯 Goals ki baat? Fantastic! SMART goals banao - specific, measurable!",
-            "📈 Target achieve karna hai? Daily progress track karo!",
-            "🏆 Success pakki milegi! Consistency maintain karo!",
-            "💡 Big goals ko small steps me break karo!"
+            "🎯 Goals ki baat? Fantastic! Small steps me divide karo, achieve karna easy hoga!",
+            "📈 Target achieve karna hai? Daily progress track karte raho!",
+            "🏆 Success pakki milegi! Consistency maintain karo bas!",
+            "💡 Big goals scary lagte hain, but small tasks me break karo!"
+        ]
+    elif any(word in user_input_lower for word in ['habit', 'daily', 'routine']):
+        responses = [
+            "💪 Habits? Yahi toh real game-changer hai! Small start karo!",
+            "🔥 Daily consistency se kuch bhi possible hai bhai!",
+            "⚡ 1% daily improvement = 37x better in 1 year!",
+            "🌟 Habit formation me 21 days lagte hain, patience rakho!"
         ]
     else:
         responses = [
-            "🤖 Haan bhai, samajh gaya! Main tumhara AI companion hun!",
-            "✨ Interesting point! Analytics dekho patterns ke liye!",
-            "🎯 Bilkul sahi direction me ja rahe ho!",
-            "🚀 Keep growing! Main yahin hun support ke liye!"
+            "😊 Haan bhai, samajh gaya! Main tumhara AI buddy hun, kya aur help chahiye?",
+            "💭 Interesting point! Aur detail me batao kya chal raha hai?",
+            "✨ Bilkul sahi direction me ja rahe ho! Keep it up!",
+            "🎯 Focus rakho apne goals par, main support kar raha hun!",
+            "🚀 Great! Aur kuch discuss karna hai?"
         ]
     
     return random.choice(responses)
@@ -586,11 +331,9 @@ def ai_chat_hinglish(user_input):
 if not st.session_state.user_authenticated:
     st.markdown("""
     <div class="welcome-container">
-        <div class="hologram-effect">
-            <div class="welcome-title">AniGPT V2</div>
-        </div>
-        <div class="welcome-subtitle">🚀 Your Futuristic AI Companion</div>
-        <div class="welcome-subtitle">Enter the Future of Personal Productivity</div>
+        <div class="welcome-title">🤖 AniGPT V2</div>
+        <div class="welcome-subtitle">Your Personal AI Assistant</div>
+        <div class="welcome-subtitle">Track • Learn • Grow • Achieve</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -598,107 +341,72 @@ if not st.session_state.user_authenticated:
     col1, col2, col3 = st.columns([1, 2, 1])
     
     with col2:
-        st.markdown("<br><br>", unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         
         username = st.text_input(
-            "",
-            placeholder="🚀 Enter your name to begin your journey...",
-            key="username_input",
-            help="Type your name and press Enter to access AniGPT V2"
+            "👤 Enter your name to continue:",
+            placeholder="Your name here...",
+            key="username_input"
         )
         
         st.markdown("<br>", unsafe_allow_html=True)
         
-        col_a, col_b, col_c = st.columns([1, 2, 1])
-        
-        with col_b:
-            if st.button("🌟 Enter the Future", type="primary", key="enter_button"):
-                if username.strip():
-                    st.session_state.username = username.strip()
-                    st.session_state.user_authenticated = True
-                    
-                    # Loading animation
-                    progress_placeholder = st.empty()
-                    status_placeholder = st.empty()
-                    
-                    for i in range(101):
-                        progress_placeholder.progress(i)
-                        if i < 33:
-                            status_placeholder.markdown('<p class="loading-text">🔍 Scanning biometrics...</p>', unsafe_allow_html=True)
-                        elif i < 66:
-                            status_placeholder.markdown('<p class="loading-text">🧠 Loading AI modules...</p>', unsafe_allow_html=True)
-                        else:
-                            status_placeholder.markdown('<p class="loading-text">🚀 Initializing workspace...</p>', unsafe_allow_html=True)
-                        time.sleep(0.02)
-                    
-                    progress_placeholder.empty()
-                    status_placeholder.success(f"Welcome aboard, {username}! 🎉")
+        if st.button("🚀 Get Started", type="primary", key="enter_button", use_container_width=True):
+            if username.strip():
+                st.session_state.username = username.strip()
+                st.session_state.user_authenticated = True
+                
+                # Simple loading
+                with st.spinner("Setting up your workspace..."):
                     time.sleep(1)
-                    st.rerun()
-                else:
-                    st.error("🚨 Please enter your name to continue!")
+                
+                st.success(f"Welcome {username}! 🎉")
+                time.sleep(1)
+                st.rerun()
+            else:
+                st.error("Please enter your name!")
 
 # Main Dashboard
 else:
-    # Header
+    # Top Header with User Info
     st.markdown(f"""
-    <div class="dashboard-header">
-        <div class="dashboard-title">🚀 AniGPT V2 COMMAND CENTER</div>
-        <div class="user-welcome">Welcome back, Commander {st.session_state.username}! Ready to conquer your goals? 💪</div>
+    <div class="top-header">
+        <div class="user-info">
+            <div>
+                <div class="user-name">👋 Hello, {st.session_state.username}!</div>
+                <small style="opacity: 0.8;">Welcome to your personal AI workspace</small>
+            </div>
+        </div>
+        <div class="user-status">✨ Online</div>
     </div>
     """, unsafe_allow_html=True)
     
-    # Enhanced Sidebar
+    # Sidebar
     with st.sidebar:
         st.markdown(f"""
-        <div style="
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        ">
-            <h2>👤 {st.session_state.username}</h2>
-            <p>Productivity Commander</p>
+        <div class="sidebar-card">
+            <h3>👤 {st.session_state.username}</h3>
+            <p style="opacity: 0.8;">Personal AI Assistant</p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Live stats
-        st.markdown("### 📊 Mission Status")
+        # Quick Stats
+        st.markdown("### 📊 Quick Stats")
         
         col1, col2 = st.columns(2)
         with col1:
             st.markdown(f"""
             <div class="metric-card">
-                <h3>😊</h3>
-                <h2>{len(st.session_state.mood_entries)}</h2>
+                <h3>😊 {len(st.session_state.mood_entries)}</h3>
                 <p>Moods</p>
             </div>
             """, unsafe_allow_html=True)
             
-            st.markdown(f"""
-            <div class="metric-card">
-                <h3>🎯</h3>
-                <h2>{len(st.session_state.goals)}</h2>
-                <p>Goals</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
         with col2:
             st.markdown(f"""
             <div class="metric-card">
-                <h3>💪</h3>
-                <h2>{len(st.session_state.habits)}</h2>
+                <h3>💪 {len(st.session_state.habits)}</h3>
                 <p>Habits</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown(f"""
-            <div class="metric-card">
-                <h3>🤖</h3>
-                <h2>{len(st.session_state.chat_history)}</h2>
-                <p>AI Chats</p>
             </div>
             """, unsafe_allow_html=True)
         
@@ -708,234 +416,156 @@ else:
             st.session_state.user_authenticated = False
             st.session_state.username = ""
             st.rerun()
-        
-        # Random motivation
-        motivations = [
-            "🌟 You're doing amazing!",
-            "🚀 Next level awaits!",
-            "💪 Consistency is key!",
-            "🎯 Focus on your goals!",
-            "⚡ Energy high rakho!"
-        ]
-        
-        if st.button("💡 Daily Motivation"):
-            st.success(random.choice(motivations))
     
     # Main Tabs
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "🎯 Mission Control", "😊 Mood Matrix", "📖 Mind Vault", "💪 Habit Engine", "🤖 AI Companion"
+        "🏠 Dashboard", "😊 Mood", "📝 Notes", "💪 Habits", "🤖 AI Chat"
     ])
     
-    # Mission Control Tab
+    # Dashboard Tab
     with tab1:
-        st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-        st.markdown("### 🎯 Mission Control Center")
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown("### 🏠 Dashboard Overview")
         
-        col1, col2 = st.columns(2)
+        # Quick stats
+        col1, col2, col3, col4 = st.columns(4)
         
         with col1:
-            st.markdown("#### 🚀 Quick Launch")
-            
-            if st.button("⚡ Log Mood Now", key="quick_mood"):
-                st.success("Mood tracker activated! Go to Mood Matrix 😊")
-            
-            if st.button("📝 Quick Note", key="quick_note"):
-                st.success("Mind Vault opened! Ready for input 📖")
-            
-            if st.button("💪 Mark Habit", key="quick_habit"):
-                st.success("Habit Engine powered up! 🔥")
+            st.metric("😊 Mood Entries", len(st.session_state.mood_entries), delta=1 if st.session_state.mood_entries else 0)
         
         with col2:
-            st.markdown("#### 📊 System Status")
-            
-            # Progress bars
-            total_entries = len(st.session_state.mood_entries) + len(st.session_state.chat_history)
-            productivity_score = min(total_entries * 10, 100)
-            
-            st.markdown(f"**Productivity Score:** {productivity_score}%")
-            st.progress(productivity_score / 100)
-            
-            engagement_score = len(st.session_state.chat_history) * 15
-            engagement_score = min(engagement_score, 100)
-            
-            st.markdown(f"**AI Engagement:** {engagement_score}%")
-            st.progress(engagement_score / 100)
+            st.metric("📝 Notes", len(st.session_state.thoughts), delta=1 if st.session_state.thoughts else 0)
         
-        # Today's summary
-        st.markdown("#### 📅 Today's Mission Summary")
-        today = datetime.date.today()
+        with col3:
+            st.metric("💪 Habits", len(st.session_state.habits), delta=1 if st.session_state.habits else 0)
         
-        today_moods = [m for m in st.session_state.mood_entries if m.get('date', today) == today]
-        today_chats = [c for c in st.session_state.chat_history[-10:] if True]  # Recent chats
+        with col4:
+            st.metric("🤖 AI Chats", len(st.session_state.chat_history), delta=1 if st.session_state.chat_history else 0)
+        
+        st.markdown("---")
+        
+        # Quick actions
+        st.markdown("### ⚡ Quick Actions")
         
         col_a, col_b, col_c = st.columns(3)
         
         with col_a:
-            st.metric("😊 Moods Today", len(today_moods), delta=1 if today_moods else 0)
+            if st.button("📝 Quick Mood Log", key="quick_mood"):
+                st.info("Go to Mood tab to log your current mood! 😊")
         
         with col_b:
-            st.metric("🤖 AI Interactions", len(today_chats), delta=2 if today_chats else 0)
+            if st.button("💭 Quick Note", key="quick_note"):
+                st.info("Visit Notes tab to capture your thoughts! 📝")
         
         with col_c:
-            productivity_level = "🔥 HIGH" if productivity_score > 70 else "⚡ MEDIUM" if productivity_score > 30 else "🌱 GROWING"
-            st.metric("🎯 Productivity", productivity_level)
+            if st.button("💪 Check Habits", key="quick_habits"):
+                st.info("Habits tab me jao to track your progress! 🔥")
+        
+        # Recent activity
+        if st.session_state.mood_entries or st.session_state.thoughts:
+            st.markdown("### 📈 Recent Activity")
+            
+            if st.session_state.mood_entries:
+                latest_mood = st.session_state.mood_entries[-1]
+                st.info(f"Latest Mood: {latest_mood['mood']} (Intensity: {latest_mood['intensity']}/10)")
+            
+            if st.session_state.thoughts:
+                latest_thought = st.session_state.thoughts[-1]
+                st.info(f"Latest Note: {latest_thought['content'][:50]}...")
         
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Enhanced Mood Tab
+    # Mood Tab
     with tab2:
-        st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-        st.markdown("### 😊 Mood Matrix Interface")
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown("### 😊 Mood Tracker")
         
         col1, col2 = st.columns([2, 1])
         
         with col1:
             mood_options = [
-                "😊 Happy - Positive energy flowing",
-                "😢 Sad - Feeling down today", 
-                "😐 Neutral - Balanced state",
-                "😤 Frustrated - Things not going well",
-                "🤔 Thoughtful - Deep in contemplation",
-                "😴 Tired - Energy levels low",
-                "🥳 Excited - High enthusiasm",
-                "😰 Anxious - Feeling worried",
-                "😌 Peaceful - Calm and serene",
-                "🔥 Motivated - Ready to conquer"
+                "😊 Happy",
+                "😢 Sad", 
+                "😐 Neutral",
+                "😤 Frustrated",
+                "🤔 Thoughtful",
+                "😴 Tired",
+                "🥳 Excited",
+                "😰 Anxious",
+                "😌 Peaceful"
             ]
             
-            selected_mood = st.selectbox("🌈 Current Mood State:", mood_options)
+            selected_mood = st.selectbox("🌈 How are you feeling?", mood_options)
             
             reason = st.text_area(
-                "📝 Mission Report:",
-                placeholder="What's happening in your world today? Work challenges, personal wins, random thoughts...",
+                "📝 What's happening?",
+                placeholder="Work, family, health, achievements, challenges...",
                 height=100
-            )
-            
-            tags = st.text_input(
-                "🏷️ Classification Tags:",
-                placeholder="work, family, health, achievement, challenge"
             )
         
         with col2:
-            st.markdown("#### ⚡ Intensity Levels")
-            
-            intensity = st.slider("🎚️ Emotional Intensity:", 1, 10, 5)
-            st.caption(f"**Current Level:** {intensity}/10")
+            intensity = st.slider("🎚️ Intensity Level:", 1, 10, 5)
+            st.caption(f"Level: {intensity}/10")
             
             energy = st.slider("⚡ Energy Level:", 1, 10, 5)
-            st.caption(f"**Energy Status:** {energy}/10")
-            
-            # Visual feedback
-            if intensity >= 8:
-                st.success("🔥 HIGH INTENSITY")
-            elif intensity >= 5:
-                st.warning("⚡ MODERATE")
-            else:
-                st.info("🌱 LOW INTENSITY")
+            st.caption(f"Energy: {energy}/10")
         
         # Save mood
-        col_save, col_clear = st.columns([3, 1])
-        
-        with col_save:
-            if st.button("🚀 Log to Mood Matrix", type="primary", key="log_mood"):
-                if selected_mood and reason:
-                    entry = {
-                        "timestamp": datetime.datetime.now(),
-                        "user": st.session_state.username,
-                        "mood": selected_mood,
-                        "reason": reason,
-                        "intensity": intensity,
-                        "energy": energy,
-                        "tags": tags,
-                        "date": datetime.date.today()
-                    }
-                    st.session_state.mood_entries.append(entry)
-                    
-                    st.success("✅ Mood successfully logged to the Matrix!")
-                    st.balloons()
-                    
-                    # AI response based on mood
-                    if intensity >= 8:
-                        st.info("🌟 High intensity detected! Perfect time for challenging tasks!")
-                    elif intensity <= 3:
-                        st.info("💝 Low energy mode. Self-care is important today!")
-                    
-                    time.sleep(1)
-                    st.rerun()
-                else:
-                    st.error("🚨 Please complete all fields!")
-        
-        with col_clear:
-            if st.button("🗑️ Reset", key="clear_mood_form"):
-                st.rerun()
-        
-        # Mood Analytics
-        if st.session_state.mood_entries:
-            st.markdown("### 📊 Mood Analytics Dashboard")
-            
-            # Recent moods
-            recent_moods = st.session_state.mood_entries[-5:]
-            
-            for mood in recent_moods:
-                timestamp = mood['timestamp'].strftime('%H:%M')
-                st.info(f"⏰ {timestamp} | {mood['mood']} | Intensity: {mood['intensity']}/10 | Energy: {mood['energy']}/10")
-            
-            # Simple trend
-            if len(st.session_state.mood_entries) > 1:
-                avg_intensity = sum([m['intensity'] for m in st.session_state.mood_entries]) / len(st.session_state.mood_entries)
-                avg_energy = sum([m['energy'] for m in st.session_state.mood_entries]) / len(st.session_state.mood_entries)
+        if st.button("💾 Save Mood", type="primary", key="save_mood"):
+            if selected_mood and reason:
+                entry = {
+                    "timestamp": datetime.datetime.now(),
+                    "user": st.session_state.username,
+                    "mood": selected_mood,
+                    "reason": reason,
+                    "intensity": intensity,
+                    "energy": energy
+                }
+                st.session_state.mood_entries.append(entry)
                 
-                col_trend1, col_trend2 = st.columns(2)
-                with col_trend1:
-                    st.metric("📈 Avg Intensity", f"{avg_intensity:.1f}/10")
-                with col_trend2:
-                    st.metric("⚡ Avg Energy", f"{avg_energy:.1f}/10")
+                st.success("✅ Mood saved successfully!")
+                st.balloons()
+            else:
+                st.error("Please fill all fields!")
+        
+        # Recent moods
+        if st.session_state.mood_entries:
+            st.markdown("### 📊 Recent Moods")
+            
+            for mood in st.session_state.mood_entries[-3:]:
+                timestamp = mood['timestamp'].strftime('%H:%M')
+                st.info(f"⏰ {timestamp} | {mood['mood']} | Intensity: {mood['intensity']}/10")
         
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Mind Vault Tab (Journal)
+    # Notes Tab
     with tab3:
-        st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-        st.markdown("### 📖 Mind Vault - Digital Memory Bank")
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown("### 📝 Quick Notes")
         
-        # Quick note feature
-        st.markdown("#### ⚡ Quick Thought Capture")
-        
-        quick_thought = st.text_area(
+        note_content = st.text_area(
             "💭 What's on your mind?",
-            placeholder="Random thoughts, ideas, reflections, learnings, goals, dreams...",
+            placeholder="Ideas, thoughts, reflections, learnings...",
             height=150
         )
         
-        col_save_thought, col_clear_thought = st.columns([2, 1])
+        if st.button("💾 Save Note", type="primary", key="save_note"):
+            if note_content:
+                note = {
+                    "timestamp": datetime.datetime.now(),
+                    "user": st.session_state.username,
+                    "content": note_content,
+                    "word_count": len(note_content.split())
+                }
+                st.session_state.thoughts.append(note)
+                st.success("✅ Note saved!")
+                st.balloons()
+            else:
+                st.error("Please write something!")
         
-        with col_save_thought:
-            if st.button("💾 Save to Vault", type="primary", key="save_thought"):
-                if quick_thought:
-                    # Simple storage
-                    if "thoughts" not in st.session_state:
-                        st.session_state.thoughts = []
-                    
-                    thought_entry = {
-                        "timestamp": datetime.datetime.now(),
-                        "user": st.session_state.username,
-                        "content": quick_thought,
-                        "word_count": len(quick_thought.split())
-                    }
-                    
-                    st.session_state.thoughts.append(thought_entry)
-                    st.success("💾 Thought successfully archived in Mind Vault!")
-                    st.balloons()
-                else:
-                    st.error("🚨 Please enter your thoughts!")
-        
-        with col_clear_thought:
-            if st.button("🗑️ Clear", key="clear_thought"):
-                st.rerun()
-        
-        # Show recent thoughts
-        if "thoughts" in st.session_state and st.session_state.thoughts:
-            st.markdown("### 🧠 Recent Mind Archives")
+        # Recent notes
+        if st.session_state.thoughts:
+            st.markdown("### 📚 Recent Notes")
             
             for thought in st.session_state.thoughts[-3:]:
                 timestamp = thought['timestamp'].strftime('%d/%m %H:%M')
@@ -948,95 +578,76 @@ else:
         
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Habit Engine Tab
+    # Habits Tab
     with tab4:
-        st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-        st.markdown("### 💪 Habit Engine - Success Automation")
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown("### 💪 Habit Tracker")
         
         # Add habit
-        st.markdown("#### ⚡ Deploy New Habit")
-        
         col1, col2 = st.columns(2)
         
         with col1:
-            habit_name = st.text_input("💪 Habit Name:", placeholder="Daily Exercise, Reading, Meditation...")
-            habit_type = st.selectbox("🎯 Category:", ["🏃 Health", "📚 Learning", "💼 Work", "🧘 Wellness"])
+            habit_name = st.text_input("💪 New Habit:", placeholder="Exercise, Reading, Meditation...")
         
         with col2:
-            frequency = st.selectbox("🔄 Target:", ["Daily", "5x/week", "3x/week"])
-            
-            if st.button("🚀 Activate Habit", type="primary", key="add_habit"):
-                if habit_name:
-                    habit = {
-                        "id": len(st.session_state.habits) + 1,
-                        "name": habit_name,
-                        "type": habit_type,
-                        "frequency": frequency,
-                        "streak": 0,
-                        "total": 0,
-                        "last_done": None
-                    }
-                    st.session_state.habits.append(habit)
-                    st.success(f"💪 {habit_name} activated in Habit Engine!")
-                    st.balloons()
-                else:
-                    st.error("🚨 Please enter habit name!")
+            habit_category = st.selectbox("📁 Category:", ["🏃 Health", "📚 Learning", "💼 Work", "🧘 Wellness"])
         
-        # Show active habits
+        if st.button("✅ Add Habit", type="primary", key="add_habit"):
+            if habit_name:
+                habit = {
+                    "id": len(st.session_state.habits) + 1,
+                    "name": habit_name,
+                    "category": habit_category,
+                    "streak": 0,
+                    "total": 0
+                }
+                st.session_state.habits.append(habit)
+                st.success(f"💪 {habit_name} added!")
+                st.balloons()
+            else:
+                st.error("Please enter habit name!")
+        
+        # Show habits
         if st.session_state.habits:
-            st.markdown("### 🔥 Active Habit Protocols")
+            st.markdown("### 🔥 Your Habits")
             
             for habit in st.session_state.habits:
                 col_habit1, col_habit2, col_habit3 = st.columns([2, 1, 1])
                 
                 with col_habit1:
                     st.markdown(f"**💪 {habit['name']}**")
-                    st.caption(f"{habit['type']} | {habit['frequency']}")
+                    st.caption(f"{habit['category']}")
                 
                 with col_habit2:
                     st.metric("🔥 Streak", f"{habit['streak']} days")
-                    st.metric("✅ Total", habit['total'])
                 
                 with col_habit3:
-                    if st.button(f"✅ Complete", key=f"complete_habit_{habit['id']}"):
+                    if st.button(f"✅ Done", key=f"complete_{habit['id']}"):
                         habit['total'] += 1
                         habit['streak'] += 1
-                        habit['last_done'] = datetime.date.today()
-                        st.success(f"🔥 {habit['name']} completed! Streak: {habit['streak']}")
+                        st.success(f"🔥 Streak: {habit['streak']} days!")
                         st.rerun()
-                
-                # Streak visualization
-                streak_visual = "🔥" * min(habit['streak'], 10)
-                if habit['streak'] > 10:
-                    streak_visual += f" (+{habit['streak'] - 10})"
-                
-                if habit['streak'] > 0:
-                    st.caption(f"Streak: {streak_visual}")
-                
-                st.markdown("---")
         
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # AI Companion Tab
+    # AI Chat Tab
     with tab5:
-        st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-        st.markdown("### 🤖 AI Companion - Your Digital Mentor")
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown("### 🤖 AI Assistant")
         
-        # Chat interface
+        # Chat history
         if st.session_state.chat_history:
-            st.markdown("### 💬 Conversation History")
-            
             for i, (speaker, message, timestamp) in enumerate(st.session_state.chat_history[-6:]):
                 if speaker == "You":
                     st.markdown(f"""
-                    <div class="chat-message user-message">
-                        <strong>👨‍🚀 {st.session_state.username}</strong> <small>({timestamp})</small><br>
+                    <div class="chat-user">
+                        <strong>👤 You</strong> <small>({timestamp})</small><br>
                         {message}
                     </div>
                     """, unsafe_allow_html=True)
                 else:
                     st.markdown(f"""
-                    <div class="chat-message ai-message">
+                    <div class="chat-ai">
                         <strong>🤖 AniGPT</strong> <small>({timestamp})</small><br>
                         {message}
                     </div>
@@ -1044,14 +655,14 @@ else:
         
         # Chat input
         user_input = st.text_input(
-            "💬 Message to AI Companion:",
-            placeholder="Ask me anything! Motivation, tips, guidance, casual chat..."
+            "💬 Message:",
+            placeholder="Ask me anything! Motivation, guidance, casual chat..."
         )
         
-        col_send, col_clear_chat = st.columns([3, 1])
+        col_send, col_clear = st.columns([3, 1])
         
         with col_send:
-            if st.button("🚀 Send Message", type="primary", key="send_chat"):
+            if st.button("📤 Send", type="primary", key="send_message"):
                 if user_input:
                     ai_response = ai_chat_hinglish(user_input)
                     current_time = datetime.datetime.now().strftime("%H:%M")
@@ -1059,76 +670,63 @@ else:
                     st.session_state.chat_history.append(("You", user_input, current_time))
                     st.session_state.chat_history.append(("AI", ai_response, current_time))
                     
-                    # Keep last 20 messages
                     if len(st.session_state.chat_history) > 20:
                         st.session_state.chat_history = st.session_state.chat_history[-20:]
                     
                     st.rerun()
         
-        with col_clear_chat:
-            if st.button("🗑️ Clear Chat", key="clear_all_chat"):
+        with col_clear:
+            if st.button("🗑️ Clear", key="clear_chat"):
                 st.session_state.chat_history = []
                 st.rerun()
         
-        # Quick AI buttons
-        st.markdown("### ⚡ Quick AI Commands")
+        # Quick buttons
+        st.markdown("### ⚡ Quick Commands")
         
-        col_ai1, col_ai2, col_ai3 = st.columns(3)
+        col_q1, col_q2, col_q3 = st.columns(3)
         
-        with col_ai1:
-            if st.button("💡 Get Motivation", key="ai_motivation"):
-                motivational_msg = "🌟 Aaj tumhara din amazing hoga! Har challenge ek opportunity hai growth ki. Keep pushing forward! 🚀"
+        with col_q1:
+            if st.button("💡 Motivate Me", key="motivate"):
+                motivation = "🌟 You're doing great! Every small step counts. Keep moving forward! 🚀"
                 current_time = datetime.datetime.now().strftime("%H:%M")
-                st.session_state.chat_history.append(("AI", motivational_msg, current_time))
+                st.session_state.chat_history.append(("AI", motivation, current_time))
                 st.rerun()
         
-        with col_ai2:
-            if st.button("📊 Show Stats", key="ai_stats"):
-                stats_msg = f"""
-                🎯 Mission Status Report:
-                • Mood Logs: {len(st.session_state.mood_entries)}
-                • Active Habits: {len(st.session_state.habits)}
-                • Mind Vault Entries: {len(st.session_state.get('thoughts', []))}
-                • AI Conversations: {len(st.session_state.chat_history)}
+        with col_q2:
+            if st.button("📊 My Stats", key="show_stats"):
+                stats = f"""
+                📊 Your Progress:
+                • Mood Entries: {len(st.session_state.mood_entries)}
+                • Notes Written: {len(st.session_state.thoughts)}
+                • Habits Tracked: {len(st.session_state.habits)}
                 
-                Performance: Excellent! Keep growing! 🚀
+                Keep going! 💪
                 """
                 current_time = datetime.datetime.now().strftime("%H:%M")
-                st.session_state.chat_history.append(("AI", stats_msg, current_time))
+                st.session_state.chat_history.append(("AI", stats, current_time))
                 st.rerun()
         
-        with col_ai3:
-            if st.button("🎯 Daily Goal", key="ai_goal"):
-                goal_msg = "🎯 Today's Mission: Complete one habit, log your mood, and write one meaningful thought in Mind Vault. Small actions, big results! 💪"
+        with col_q3:
+            if st.button("🎯 Daily Tip", key="daily_tip"):
+                tips = [
+                    "🎯 Set one small goal for today and achieve it!",
+                    "💪 Consistency beats intensity every time!",
+                    "😊 Track your mood to understand patterns better!",
+                    "📝 Write down your thoughts - it helps clarity!",
+                    "🌟 Celebrate small wins - they add up!"
+                ]
+                tip = random.choice(tips)
                 current_time = datetime.datetime.now().strftime("%H:%M")
-                st.session_state.chat_history.append(("AI", goal_msg, current_time))
+                st.session_state.chat_history.append(("AI", tip, current_time))
                 st.rerun()
         
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Futuristic Footer
+    # Footer
     st.markdown("---")
-    st.markdown("""
-    <div style="
-        text-align: center;
-        padding: 30px;
-        background: rgba(255,255,255,0.02);
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,0.1);
-        margin: 30px 0;
-        backdrop-filter: blur(15px);
-    ">
-        <h3 style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-            🚀 AniGPT V2 - COMMAND CENTER ACTIVE
-        </h3>
-        <p style="color: rgba(255,255,255,0.8); font-family: 'Orbitron', monospace;">
-            PRODUCTIVITY • GROWTH • ACHIEVEMENT • SUCCESS
-        </p>
-        <p style="color: rgba(255,255,255,0.6); font-size: 14px;">
-            Mission Commander: {st.session_state.username} | Status: OPERATIONAL 🟢
-        </p>
-        <p style="color: rgba(255,255,255,0.5); font-size: 12px;">
-            Made with 🤖 AI Technology | Keep Conquering! 🎯
-        </p>
+    st.markdown(f"""
+    <div style="text-align: center; padding: 20px; opacity: 0.8;">
+        <h4>🤖 AniGPT V2 - Your Personal AI Assistant</h4>
+        <p>User: {st.session_state.username} | Made with ❤️ for productivity</p>
     </div>
     """, unsafe_allow_html=True)
